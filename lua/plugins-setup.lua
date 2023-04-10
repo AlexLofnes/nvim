@@ -33,7 +33,7 @@ return packer.startup(function(use)
 
 	use("nvim-lua/plenary.nvim") -- lua functions that many plugins use
 
-	use("bluz71/vim-nightfly-guicolors") -- preferred colorscheme
+	use({ "catppuccin/nvim", as = "catppuccin" }) -- preferred colorscheme
 
 	use("christoomey/vim-tmux-navigator") -- tmux & split window navigation
 
@@ -153,6 +153,65 @@ return packer.startup(function(use)
 			alpha.setup(dashboard.opts)
 		end,
 	})
+
+	use("mzlogin/vim-markdown-toc")
+
+	use({
+		"giusgad/pets.nvim",
+		requires = {
+			"giusgad/hologram.nvim",
+			"MunifTanjim/nui.nvim",
+		},
+	})
+
+	use({
+		"phaazon/hop.nvim",
+		branch = "v2", -- optional but strongly recommended
+		config = function()
+			-- you can configure Hop the way you like here; see :h hop-config
+			require("hop").setup({ keys = "etovxqpdygfblzhckisuran" })
+		end,
+	})
+
+	use({
+		"folke/which-key.nvim",
+		config = function()
+			vim.o.timeout = true
+			vim.o.timeoutlen = 800
+			require("which-key").setup({})
+		end,
+	})
+
+	use("lukas-reineke/indent-blankline.nvim")
+
+	use("notomo/gesture.nvim")
+
+	use("NvChad/nvim-colorizer.lua")
+
+	use("RRethy/vim-illuminate")
+
+	use({
+		"sudormrfbin/cheatsheet.nvim",
+
+		requires = {
+			{ "nvim-telescope/telescope.nvim" },
+			{ "nvim-lua/popup.nvim" },
+			{ "nvim-lua/plenary.nvim" },
+		},
+	})
+
+	use({
+		"gen740/SmoothCursor.nvim",
+		config = function()
+			require("smoothcursor").setup({
+				autostart = true,
+				cursor = "",
+				linehl = nil,
+			})
+		end,
+	})
+
+	use({ "chrisgrieser/nvim-spider" })
 
 	if packer_bootstrap then
 		require("packer").sync()
